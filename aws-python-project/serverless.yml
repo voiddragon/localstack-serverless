@@ -1,0 +1,25 @@
+service: aws-python-project
+
+frameworkVersion: '2 || 3'
+
+plugins:
+  - serverless-localstack
+  - serverless-python-requirements
+
+custom:
+  localstack:
+    stages:
+      # list of stages for which the plugin should be enabled
+      - local
+    host: http://127.0.0.1
+  pythonRequirements:
+    dockerizePip: true
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+
+functions:
+  hello:
+    handler: handler.hello
